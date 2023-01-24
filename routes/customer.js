@@ -17,10 +17,10 @@ router.get ('/user/:id', (req, res) => {
     const found = users.find (user => user.id === parseInt(req.params.id)) 
     if(!found) {
         res.status(404).send(`User with ID ${req.params.id} not found`)
+        return
     }
-    else {
         res.status(200).json(found)
-    }
+    
 })
 
 router.post ('/reg', (req, res) => {
@@ -45,15 +45,7 @@ router.post ('/reg', (req, res) => {
        email: req.body.email,
     }
 
-    newUser.age = new Date ().getFullYear() - newUser.birthYear
-    if (newUser.age >= 18) {
-         newUser.age = "Above 18"
-    } else {
-         newUser.age = "Below 18"
-    }
-
     users.push(newUser)
-    delete newUser.birthYear
     res.status(201).json(newUser)
 })
 
@@ -85,18 +77,9 @@ router.put ('/user/:id', (req, res) => {
         birthYear : req.body.birthYear
     }
 
-    updated.age = new Date ().getFullYear() - updated.birthYear
-    if (updated.age >= 18) {
-         updated.age = "Above 18"
-    } else {
-         updated.age = "Below 18"
-    }
-
     const targetIndex = users.indexOf(found)
     users.splice(targetIndex, 1, updated)
-
-    delete updated.birthYear
-    res.status(201).json(updated)
+    res.status(200).json(updated)
     
 })
 

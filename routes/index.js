@@ -1,6 +1,6 @@
 const genreRoute = require ('./genre.js')
 
-const usersRoute = require ('./customers')
+const usersRoute = require ('./customer.js')
 
 
 module.exports = {

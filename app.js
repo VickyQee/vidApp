@@ -3,12 +3,13 @@ const express = require ('express');
 const morgan = require ('morgan')
 
 
-import router from './routes/genre'
+// const genreRoute =require('./routes/genre')
+// const customerRoute = require ('./routes/customer') 
 // const genreRoute = require ('./routes/genre.js')
 
-// const usersRoute = require ('./routes/customers')
+// const usersRoute = require ('./routes/customers.js')
 
-import { genreRoute, usersRoute } from './routes/index'
+const { genreRoute, usersRoute } = require ('./routes/index')
 
 require ('dotenv').config()
 
@@ -16,13 +17,13 @@ const app = express ()
 
 app.use (morgan('dev')) 
 
-app.use (json())
+app.use (express.json())
 
-app.use (urlencoded({extended : false}))
+app.use (express.urlencoded({extended : false}))
 
 app.get ('/', (req, res, next) => {
     res.status(200).send("Welcome to Video App")
-    next ()
+    // next ()
 })
 
 app.use('/genre', genreRoute)
