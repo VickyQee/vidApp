@@ -1,1 +1,1 @@
-# vidApp A video imaginary rental application
+# vidApp A video rental application
